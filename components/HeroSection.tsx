@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
+import GateNavSection from "./GateNavSection";
 
 const LogicGateBackground = dynamic(() => import("./LogicGateBackground"), { ssr: false });
 const LogicGateWidget = dynamic(() => import("./LogicGateWidget"), { ssr: false });
@@ -68,7 +69,10 @@ const socialLinks = [
 export default function HeroSection() {
   const scrollDown = () => {
     const el = document.getElementById("about");
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (el) {
+      const y = el.getBoundingClientRect().top + window.scrollY - 100;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
   };
 
   return (
@@ -123,6 +127,11 @@ export default function HeroSection() {
           <span className="font-mono text-xs tracking-[0.3em] uppercase text-[#00FF88]/60 border border-[#00FF88]/20 px-3 py-1">
             {"// CHIP_ID: ADR-2025-NEURO-RTL"}
           </span>
+        </motion.div>
+
+        {/* Gate nav — Navi-Gate? */}
+        <motion.div variants={item} className="w-full mb-2">
+          <GateNavSection />
         </motion.div>
 
         {/* Name — all green */}

@@ -170,16 +170,19 @@ export default function GateNavSection() {
 
   const scrollTo = (sectionId: string) => {
     const el = document.getElementById(sectionId);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (el) {
+      const y = el.getBoundingClientRect().top + window.scrollY - 100;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
   };
 
   return (
-    <section ref={sectionRef} className="py-20 px-6 relative">
+    <div ref={sectionRef} className="py-5 px-6 relative w-full">
       {/* Label */}
-      <div className="max-w-6xl mx-auto mb-10 flex items-center gap-4">
+      <div className="max-w-5xl mx-auto mb-6 flex items-center gap-4">
         <div className="w-8 h-px bg-[#00FF88]" />
         <span className="font-mono text-xs text-[#00FF88]/60 tracking-widest uppercase">
-          {"// navigate · click a gate"}
+          {"// Navi-Gate? · click a gate to jump"}
         </span>
       </div>
 
@@ -259,10 +262,10 @@ export default function GateNavSection() {
         </div>
 
         {/* Bottom hint */}
-        <p className="font-mono text-[9px] text-center text-[#8899AA]/25 mt-8 tracking-widest">
+        <p className="font-mono text-[9px] text-center text-[#8899AA]/25 mt-6 tracking-widest">
           {"// each gate routes to a section of the site"}
         </p>
       </div>
-    </section>
+    </div>
   );
 }

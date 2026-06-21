@@ -20,25 +20,25 @@ const sections = [
       <div className="space-y-4">
         <p className="font-mono text-sm text-[#E8EAF0]/90 leading-relaxed">
           I&apos;m a <span className="text-[#00FF88] font-bold">Master&apos;s student in Electrical Engineering</span> at
-          UC Santa Cruz, currently deep in the world of{" "}
-          <span className="text-[#00FF88] font-bold">neuromorphic chip design</span> — building
-          hardware that mimics how biological neurons compute, targeting ultra-low-power
-          edge inference at the silicon level. (Yes, I&apos;m trying to make chips think. No pressure.)
+          UC Santa Cruz, where I spend my days teaching silicon to think —{" "}
+          <span className="text-[#00FF88] font-bold">neuromorphic chip design</span> that mimics
+          biological neurons for ultra-low-power edge inference. The irony of using electricity to
+          replicate the brain&apos;s efficiency is not lost on me.
         </p>
         <p className="font-mono text-sm text-[#E8EAF0]/80 leading-relaxed">
           Before grad school, I spent{" "}
           <span className="text-[#4A9EFF] font-bold">4 years as a Post-Silicon Validation Engineer II</span>{" "}
-          at <span className="text-[#4A9EFF]">Anora Semiconductor Labs</span>, where I owned
-          silicon bring-up and functional validation of mixed-signal SoCs — bridging the gap between
-          RTL intent and real silicon behavior. Translation: I poked chips with probes until they
-          confessed what was wrong.
+          at <span className="text-[#4A9EFF]">Anora Semiconductor Labs</span>. My job was silicon
+          bring-up and functional validation of mixed-signal SoCs — a fancy way of saying I&apos;d
+          get brand-new chips at 6 AM, hook them up to a Teradyne ATE, and interrogate them until
+          they revealed what the RTL team got wrong.
         </p>
         <p className="font-mono text-sm text-[#8899AA] leading-relaxed">
-          My work spans the full stack: RTL design in Verilog/SystemVerilog, physical implementation
-          in Cadence Innovus, and post-silicon debug. I care about the intersection of
-          <span className="text-[#FFB347]"> emerging compute paradigms</span> and
-          <span className="text-[#FFB347]"> physical implementation constraints</span>.
-          Basically, I want fast chips that don&apos;t melt.
+          My work spans the full stack: RTL in Verilog/SystemVerilog, physical implementation
+          in Cadence Innovus, and post-silicon debug. I care deeply about the intersection of
+          <span className="text-[#FFB347]"> emerging compute architectures</span> and
+          <span className="text-[#FFB347]"> real physical constraints</span> — because great ideas
+          still have to tape out.
         </p>
         <div className="flex flex-wrap gap-2 pt-2">
           {["Neuromorphic", "RISC-V", "RTL Design", "Physical Design", "Post-Si Validation"].map(t => (

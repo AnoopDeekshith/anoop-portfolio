@@ -1,7 +1,6 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import GateNavSection from "@/components/GateNavSection";
 
 const ScrollChipExperience = dynamic(
   () => import("@/components/ScrollChipExperience"),
@@ -51,11 +50,6 @@ export default function ClientSections() {
     <>
       {/* About + Chip Zoom Scroll Experience */}
       <ScrollChipExperience />
-
-      <Divider />
-
-      {/* Gate Nav — clickable logic gates linking to sections */}
-      <GateNavSection />
 
       <Divider />
 

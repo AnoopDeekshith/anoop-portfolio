@@ -64,7 +64,7 @@ export default function OscilloscopeSkills() {
       skills.forEach((skill, i) => {
         const channelY = i * CHANNEL_HEIGHT + PADDING;
         const midY = channelY + CHANNEL_HEIGHT / 2;
-        const amplitude = (CHANNEL_HEIGHT / 2 - 10) * skill.level;
+        const amplitude = CHANNEL_HEIGHT / 2 - 12; // constant — frequency encodes proficiency
 
         // Channel background
         ctx.fillStyle = i % 2 === 0 ? "rgba(0,255,136,0.02)" : "rgba(0,0,0,0)";
@@ -143,10 +143,10 @@ export default function OscilloscopeSkills() {
         ctx.stroke();
         ctx.setLineDash([]);
 
-        // Voltage label
+        // Frequency label
         ctx.fillStyle = `${skill.color}60`;
         ctx.font = "8px JetBrains Mono, monospace";
-        ctx.fillText(`${(skill.level * 3.3).toFixed(1)}V`, LABEL_WIDTH + 4, midY - amplitude - 3);
+        ctx.fillText(`${skill.freq.toFixed(1)} MHz`, LABEL_WIDTH + 4, midY - amplitude - 3);
       });
 
       // Time axis at bottom
@@ -191,7 +191,7 @@ export default function OscilloscopeSkills() {
           Signal Analysis
         </h2>
         <p className="font-mono text-sm text-[#8899AA] mb-8">
-          {"// Amplitude = proficiency  |  5 channels  |  Live render"}
+          {"// Frequency = proficiency  |  5 channels  |  Live render"}
         </p>
 
         {/* Oscilloscope frame */}

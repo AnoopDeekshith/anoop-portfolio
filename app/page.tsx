@@ -18,17 +18,14 @@ export default function Home() {
         <HeroSection />
         <ClientSections />
 
-        {/* Contact form — linked from banner */}
+        {/* Contact — form + info side by side */}
         <div className="max-w-6xl mx-auto px-6">
           <div className="h-px bg-gradient-to-r from-transparent via-[#1E2A3A] to-transparent" />
         </div>
-        <ContactForm />
-
-        {/* Contact links section */}
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="h-px bg-gradient-to-r from-transparent via-[#1E2A3A] to-transparent" />
+        <div className="grid md:grid-cols-2 items-start">
+          <ContactForm />
+          <ContactSection />
         </div>
-        <ContactSection />
       </main>
     </>
   );

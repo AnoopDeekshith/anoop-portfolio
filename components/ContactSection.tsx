@@ -157,10 +157,10 @@ export default function ContactSection() {
       <div className="max-w-6xl mx-auto mt-20 pt-8 border-t border-[#1E2A3A]">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <span className="font-mono text-xs text-[#8899AA]/30">
-            © 2025 Anoop Deekshith Ravikumar — Built with Next.js + GSAP + D3.js
+            © 2025 Anoop Deekshith Ravikumar
           </span>
           <span className="font-mono text-xs text-[#00FF88]/30">
-            {"// "} v2.0.0 · RTL-aesthetic portfolio
+            {"// "} v2.0.0
           </span>
         </div>
       </div>

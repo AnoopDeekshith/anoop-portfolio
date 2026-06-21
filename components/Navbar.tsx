@@ -47,7 +47,10 @@ export default function Navbar() {
   const scrollTo = (href: string) => {
     const id = href.replace("#", "");
     const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (el) {
+      const y = el.getBoundingClientRect().top + window.scrollY - 100;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
     setMobileOpen(false);
   };
 

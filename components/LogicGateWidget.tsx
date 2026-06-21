@@ -185,7 +185,10 @@ export default function LogicGateWidget() {
       setPhase("routing");
       addTimer(() => {
         const el = document.getElementById(resolved.section);
-        if (el) el.scrollIntoView({ behavior: "smooth" });
+        if (el) {
+          const y = el.getBoundingClientRect().top + window.scrollY - 100;
+          window.scrollTo({ top: y, behavior: "smooth" });
+        }
         setPhase("idle");
         setQuery("");
         setActiveGate(0);
