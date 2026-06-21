@@ -121,13 +121,6 @@ export default function HeroSection() {
         animate="show"
         className="relative z-10 flex flex-col items-center text-center px-6 max-w-4xl mx-auto w-full"
       >
-        {/* Chip ID tag */}
-        <motion.div variants={item} className="mb-5">
-          <span className="font-mono text-xs tracking-[0.3em] uppercase text-[#00FF88]/60 border border-[#00FF88]/20 px-3 py-1">
-            {"// CHIP_ID: ADR-2025-NEURO-RTL"}
-          </span>
-        </motion.div>
-
         {/* Name — all green */}
         <motion.h1
           variants={item}

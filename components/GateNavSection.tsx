@@ -182,7 +182,7 @@ export default function GateNavSection() {
       <div className="max-w-5xl mx-auto mb-6 flex items-center gap-4">
         <div className="w-8 h-px bg-[#00FF88]" />
         <span className="font-mono text-xs text-[#00FF88]/60 tracking-widest uppercase">
-          {"// Navi-Gate? · click a gate to jump"}
+          {"// Navi-Gate?"}
         </span>
       </div>
 

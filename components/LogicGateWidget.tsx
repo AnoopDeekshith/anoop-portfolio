@@ -213,7 +213,7 @@ export default function LogicGateWidget() {
           <div className="w-2 h-2 rounded-full bg-red-500/60" />
           <div className="w-2 h-2 rounded-full bg-yellow-500/60" />
           <div className="w-2 h-2 rounded-full bg-green-500/60" />
-          <span className="font-mono text-[9px] text-[#8899AA]/40 ml-1">chip_query_engine v1.0</span>
+          <span className="font-mono text-[9px] text-[#8899AA] ml-1">chip_query_engine v1.0</span>
         </div>
 
         <div className="p-4 space-y-4">
@@ -226,7 +226,7 @@ export default function LogicGateWidget() {
               onChange={(e) => setQuery(e.target.value)}
               placeholder="ask about projects, skills, resume..."
               disabled={phase !== "idle"}
-              className="flex-1 bg-transparent font-mono text-xs text-white placeholder-[#8899AA]/40 outline-none border-b border-[#00FF88]/20 focus:border-[#00FF88]/60 pb-0.5 transition-colors disabled:opacity-50"
+              className="flex-1 bg-transparent font-mono text-xs text-white placeholder-[#8899AA] outline-none border-b border-[#00FF88]/20 focus:border-[#00FF88]/60 pb-0.5 transition-colors disabled:opacity-50"
             />
             <button
               type="submit"
@@ -244,7 +244,7 @@ export default function LogicGateWidget() {
                 <button
                   key={s.label}
                   onClick={() => { setQuery(s.query); runQuery(s.query); }}
-                  className="font-mono text-[9px] px-2 py-0.5 border border-[#1E2A3A] text-[#8899AA]/60 hover:border-[#00FF88]/40 hover:text-[#00FF88]/80 transition-all"
+                  className="font-mono text-[9px] px-2 py-0.5 border border-[#1E2A3A] text-[#8899AA] hover:border-[#00FF88]/60 hover:text-[#00FF88] transition-all"
                 >
                   {s.label}
                 </button>
@@ -257,13 +257,13 @@ export default function LogicGateWidget() {
             <div className="space-y-3">
               {/* Input binary */}
               <div>
-                <div className="font-mono text-[8px] text-[#8899AA]/40 mb-1 tracking-widest">INPUT → BINARY ENCODE</div>
+                <div className="font-mono text-[8px] text-[#8899AA] mb-1 tracking-widest">INPUT → BINARY ENCODE</div>
                 <BinaryReveal text={inputBinary} color="#00FF88" />
               </div>
 
               {/* Logic gates */}
               <div>
-                <div className="font-mono text-[8px] text-[#8899AA]/40 mb-2 tracking-widest">GATE ARRAY</div>
+                <div className="font-mono text-[8px] text-[#8899AA] mb-2 tracking-widest">GATE ARRAY</div>
                 <div className="flex items-center gap-2">
                   {/* Signal in */}
                   <div className="flex flex-col gap-1">
@@ -286,7 +286,7 @@ export default function LogicGateWidget() {
               {/* Output binary */}
               {(phase === "output" || phase === "routing") && outputBinary && (
                 <div>
-                  <div className="font-mono text-[8px] text-[#8899AA]/40 mb-1 tracking-widest">OUTPUT → DECODE</div>
+                  <div className="font-mono text-[8px] text-[#8899AA] mb-1 tracking-widest">OUTPUT → DECODE</div>
                   <BinaryReveal text={outputBinary} color={color} />
                 </div>
               )}
@@ -304,7 +304,7 @@ export default function LogicGateWidget() {
                     {route.label}
                   </span>
                   {phase === "routing" && (
-                    <span className="ml-auto font-mono text-[8px] text-[#8899AA]/40 animate-pulse">
+                    <span className="ml-auto font-mono text-[8px] text-[#8899AA] animate-pulse">
                       scrolling...
                     </span>
                   )}
