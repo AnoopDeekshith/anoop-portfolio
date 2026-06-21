@@ -195,7 +195,7 @@ export default function VRAMResume() {
             Download .PDF
           </a>
           <span className="font-mono text-xs text-[#8899AA]/50">
-            {"// Last updated: 2025  |  Format: ATS-friendly PDF"}
+            {"// Last updated: 2025"}
           </span>
         </div>
 

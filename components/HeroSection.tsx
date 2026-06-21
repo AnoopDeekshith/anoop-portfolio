@@ -103,10 +103,10 @@ export default function HeroSection() {
             rel="noopener noreferrer"
             aria-label={s.label}
             title={s.label}
-            className="w-8 h-8 border border-[#1E2A3A] flex items-center justify-center transition-all duration-200 hover:scale-110 hover:border-opacity-60 group"
-            style={{ color: `${s.color}60` }}
+            className="w-8 h-8 border flex items-center justify-center transition-all duration-200 hover:scale-110 group"
+            style={{ borderColor: `${s.color}50`, color: s.color }}
           >
-            <span className="group-hover:text-current transition-colors" style={{ color: `${s.color}60` }}>
+            <span className="transition-colors" style={{ color: s.color }}>
               {s.icon}
             </span>
           </a>
