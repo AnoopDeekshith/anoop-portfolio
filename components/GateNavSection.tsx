@@ -177,7 +177,7 @@ export default function GateNavSection() {
   };
 
   return (
-    <div ref={sectionRef} className="py-5 px-6 relative w-full">
+    <section ref={sectionRef} className="py-16 px-6 relative">
       {/* Label */}
       <div className="max-w-5xl mx-auto mb-6 flex items-center gap-4">
         <div className="w-8 h-px bg-[#00FF88]" />
@@ -266,6 +266,6 @@ export default function GateNavSection() {
           {"// each gate routes to a section of the site"}
         </p>
       </div>
-    </div>
+    </section>
   );
 }

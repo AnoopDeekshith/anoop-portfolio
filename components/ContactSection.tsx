@@ -70,34 +70,7 @@ export default function ContactSection() {
       />
 
       <div className="max-w-6xl mx-auto relative">
-        <div className="flex items-center gap-4 mb-4">
-          <div className="w-8 h-px bg-[#00FF88]" />
-          <span className="font-mono text-xs text-[#00FF88]/60 tracking-widest uppercase">
-            Contact
-          </span>
-        </div>
-
         <div className="max-w-2xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-3xl md:text-4xl font-bold text-white mb-4"
-          >
-            Let&apos;s Build Silicon Together
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="font-mono text-sm text-[#00FF88] mb-10 border border-[#00FF88]/20 px-4 py-2 bg-[#00FF88]/5 inline-block"
-          >
-            Open to RTL Design, Physical Design, and Validation roles
-          </motion.p>
-
           {/* Contact card */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
