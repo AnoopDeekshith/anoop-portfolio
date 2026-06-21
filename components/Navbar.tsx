@@ -21,7 +21,7 @@ export default function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 40);
 
-      const sections = ["hero", "about", "projects", "blog", "resume", "contact"];
+      const sections = ["hero", "about", "projects", "blog", "resume", "contact-form", "contact"];
       const current = sections.findLast((id) => {
         const el = document.getElementById(id);
         if (!el) return false;
@@ -54,11 +54,12 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
             ? "bg-[#0A0A0F]/90 backdrop-blur-md border-b border-[#1E2A3A]"
             : "bg-transparent"
         }`}
+        style={{ top: "36px" }}
       >
         <div className="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
           {/* Logo */}
@@ -132,7 +133,8 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed top-16 left-0 right-0 z-40 bg-[#0D1117]/95 backdrop-blur-md border-b border-[#1E2A3A] md:hidden"
+            className="fixed left-0 right-0 z-40 bg-[#0D1117]/95 backdrop-blur-md border-b border-[#1E2A3A] md:hidden"
+            style={{ top: "calc(36px + 64px)" }}
           >
             <ul className="flex flex-col py-4">
               {navItems.map((item) => (
