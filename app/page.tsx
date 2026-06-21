@@ -4,10 +4,13 @@ import ContactSection from "@/components/ContactSection";
 import ClientSections from "@/components/ClientSections";
 import TopBanner from "@/components/TopBanner";
 import ContactForm from "@/components/ContactForm";
+import CursorGlow from "@/components/CursorGlow";
 
 export default function Home() {
   return (
     <>
+      <CursorGlow />
+
       {/* Sticky top banner — 36px tall, above navbar */}
       <TopBanner />
 

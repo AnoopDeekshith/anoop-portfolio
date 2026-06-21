@@ -11,7 +11,7 @@
 
 :root {
   --background: #0A0A0F;
-  --foreground: #E8EAF0;
+  --foreground: #F0F4FF;
   --neon: #00FF88;
   --signal: #4A9EFF;
   --amber: #FFB347;
@@ -30,6 +30,11 @@ body {
   background-color: #0A0A0F;
   color: var(--foreground);
   overflow-x: hidden;
+}
+
+/* Ensure main prose text is bright throughout */
+p.font-mono, span.font-mono, div.font-mono, li span.font-mono {
+  --tw-text-opacity: 1;
 }
 
 /* Custom scrollbar */

@@ -18,14 +18,14 @@ const sections = [
     accent: "#00FF88",
     content: (
       <div className="space-y-4">
-        <p className="font-mono text-sm text-[#E8EAF0]/90 leading-relaxed">
+        <p className="font-mono text-sm text-[#F0F4FF] leading-relaxed">
           I&apos;m a <span className="text-[#00FF88] font-bold">Master&apos;s student in Electrical Engineering</span> at
           UC Santa Cruz, where I spend my days teaching silicon to think —{" "}
           <span className="text-[#00FF88] font-bold">neuromorphic chip design</span> that mimics
           biological neurons for ultra-low-power edge inference. The irony of using electricity to
           replicate the brain&apos;s efficiency is not lost on me.
         </p>
-        <p className="font-mono text-sm text-[#E8EAF0]/80 leading-relaxed">
+        <p className="font-mono text-sm text-[#D8DCF0] leading-relaxed">
           Before grad school, I spent{" "}
           <span className="text-[#4A9EFF] font-bold">4 years as a Post-Silicon Validation Engineer II</span>{" "}
           at <span className="text-[#4A9EFF]">Anora Semiconductor Labs</span>. My job was silicon
@@ -62,7 +62,7 @@ const sections = [
           <div className="font-mono text-[10px] text-[#00FF88]/60 tracking-widest mb-1">CURRENT RESEARCH</div>
           <div className="font-mono text-sm text-[#00FF88] font-bold">Spiking Neural Network Accelerator</div>
         </div>
-        <p className="font-mono text-sm text-[#E8EAF0]/80 leading-relaxed">
+        <p className="font-mono text-sm text-[#D8DCF0] leading-relaxed">
           Designing a <span className="text-[#00FF88]">Leaky Integrate-and-Fire (LIF) neuron array</span> in
           SystemVerilog, targeting ultra-low-power inference on edge devices. The architecture
           uses time-multiplexed synaptic weight memory and asynchronous spike routing to minimize
@@ -96,7 +96,7 @@ const sections = [
           <div className="font-mono text-[10px] text-[#4A9EFF]/60 tracking-widest mb-1">RTL PROJECT</div>
           <div className="font-mono text-sm text-[#4A9EFF] font-bold">5-Stage Pipeline · In Progress</div>
         </div>
-        <p className="font-mono text-sm text-[#E8EAF0]/80 leading-relaxed">
+        <p className="font-mono text-sm text-[#D8DCF0] leading-relaxed">
           Full RTL implementation of the <span className="text-[#4A9EFF]">RV32I ISA</span> with a
           5-stage in-order pipeline (IF → ID → EX → MEM → WB). Includes full hazard detection unit,
           data forwarding paths, and a branch predictor. Verified with a UVM environment in Xcelium.
@@ -129,7 +129,7 @@ const sections = [
           <div className="font-mono text-[10px] text-[#FFB347]/60 tracking-widest mb-1">COMPLETED PROJECT</div>
           <div className="font-mono text-sm text-[#FFB347] font-bold">+10.6% IPC · 52% L1 Miss Reduction</div>
         </div>
-        <p className="font-mono text-sm text-[#E8EAF0]/80 leading-relaxed">
+        <p className="font-mono text-sm text-[#D8DCF0] leading-relaxed">
           Implemented and evaluated a <span className="text-[#FFB347]">Best-Offset hardware prefetcher</span> for
           RISC-V memory hierarchy using Gem5 and Scarab simulators. Benchmarked across 20 SPEC2017
           workloads, achieving 10.6% average IPC uplift and 52% reduction in L1 cache misses.
@@ -162,7 +162,7 @@ const sections = [
           <div className="font-mono text-[10px] text-[#FFD700]/60 tracking-widest mb-1">ML + PHYSICAL DESIGN</div>
           <div className="font-mono text-sm text-[#FFD700] font-bold">CNN-Driven IR Drop Analysis</div>
         </div>
-        <p className="font-mono text-sm text-[#E8EAF0]/80 leading-relaxed">
+        <p className="font-mono text-sm text-[#D8DCF0] leading-relaxed">
           Building a <span className="text-[#FFD700]">CNN-based model</span> trained on Cadence Innovus
           IR-drop maps to predict supply voltage droop during physical implementation — enabling
           proactive power grid insertion before sign-off, reducing IR violations and runtime.
@@ -196,38 +196,45 @@ export default function ScrollChipExperience() {
     if (typeof window === "undefined") return;
     gsap.registerPlugin(ScrollTrigger);
 
-    const ctx = gsap.context(() => {
-      sections.forEach((section, i) => {
-        ScrollTrigger.create({
-          trigger: containerRef.current,
-          start: `${(i / sections.length) * 100}% top`,
-          end: `${((i + 1) / sections.length) * 100}% top`,
-          onEnter: () => updateSection(i),
-          onEnterBack: () => updateSection(i),
-        });
-      });
-    });
-
     const updateSection = (i: number) => {
       if (activeRef.current === i) return;
       activeRef.current = i;
 
-      // Update chip zoom
       chipRef.current?.setZoom(sections[i].zoom);
 
-      // Animate panels
       panelRefs.current.forEach((panel, pi) => {
         if (!panel) return;
+        gsap.killTweensOf(panel);
         if (pi === i) {
-          gsap.to(panel, { opacity: 1, x: 0, duration: 0.5, ease: "power2.out" });
+          gsap.to(panel, { opacity: 1, x: 0, duration: 0.35, ease: "power2.out" });
         } else {
-          gsap.to(panel, { opacity: 0, x: -20, duration: 0.3 });
+          gsap.to(panel, { opacity: 0, x: -20, duration: 0.2, ease: "power1.in" });
         }
       });
     };
 
-    // Init
-    updateSection(0);
+    // Set all panels to known initial state
+    panelRefs.current.forEach((panel, pi) => {
+      if (panel) gsap.set(panel, { opacity: pi === 0 ? 1 : 0, x: 0 });
+    });
+    activeRef.current = 0;
+    chipRef.current?.setZoom(sections[0].zoom);
+
+    const ctx = gsap.context(() => {
+      // Single trigger tracking progress — always in sync regardless of scroll speed
+      ScrollTrigger.create({
+        trigger: containerRef.current,
+        start: "top top",
+        end: "bottom top",
+        onUpdate: (self) => {
+          const i = Math.min(
+            Math.floor(self.progress * sections.length),
+            sections.length - 1
+          );
+          updateSection(i);
+        },
+      });
+    });
 
     return () => ctx.revert();
   }, []);

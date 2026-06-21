@@ -35,6 +35,7 @@ const skills = [
 export default function WaferSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const waferRef = useRef<SVGSVGElement>(null);
+  const packageRef = useRef<SVGSVGElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const skillRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -55,6 +56,23 @@ export default function WaferSection() {
           scrollTrigger: {
             trigger: sectionRef.current,
             start: "top 70%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+
+      // Package zoom-in reveal (opposite of wafer zoom-out)
+      gsap.fromTo(
+        packageRef.current,
+        { scale: 0.6, opacity: 0, transformOrigin: "center center" },
+        {
+          scale: 1,
+          opacity: 1,
+          duration: 1.0,
+          ease: "back.out(1.3)",
+          scrollTrigger: {
+            trigger: packageRef.current,
+            start: "top 80%",
             toggleActions: "play none none reverse",
           },
         }
@@ -133,8 +151,8 @@ export default function WaferSection() {
         </h2>
 
         <div className="grid md:grid-cols-2 gap-12 items-start">
-          {/* Wafer SVG */}
-          <div className="flex justify-center">
+          {/* Wafer SVG + Packaged device stacked */}
+          <div className="flex flex-col items-center gap-8">
             <svg
               ref={waferRef}
               viewBox="0 0 420 420"
@@ -219,6 +237,158 @@ export default function WaferSection() {
               <text x="210" y="228" textAnchor="middle" fill="#8899AA" fontSize="8" fontFamily="monospace" opacity="0.5">
                 Wafer Sort · Teradyne UltraFLEX
               </text>
+            </svg>
+
+            {/* ── Packaged Device ── */}
+            <svg
+              ref={packageRef}
+              viewBox="0 0 280 280"
+              width="100%"
+              style={{ maxWidth: 340, opacity: 0 }}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <defs>
+                <radialGradient id="pkgBodyGrad" cx="38%" cy="32%" r="65%">
+                  <stop offset="0%" stopColor="#1a2535" />
+                  <stop offset="100%" stopColor="#07090f" />
+                </radialGradient>
+                <radialGradient id="dieAreaGrad" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="#111825" />
+                  <stop offset="100%" stopColor="#060a10" />
+                </radialGradient>
+                <filter id="pkgPinGlow" x="-50%" y="-50%" width="200%" height="200%">
+                  <feGaussianBlur stdDeviation="1.5" result="blur" />
+                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+
+              {/* Package label */}
+              <text x="140" y="22" textAnchor="middle" fill="#4A9EFF" fontSize="8" fontFamily="monospace" opacity="0.65">
+                QFP-32 · PACKAGED DIE · POST-SORT
+              </text>
+
+              {/* Package shadow glow */}
+              <rect x="87" y="87" width="106" height="106" rx="3" fill="rgba(74,158,255,0.06)" />
+
+              {/* Package body */}
+              <rect x="88" y="88" width="104" height="104" rx="2" fill="url(#pkgBodyGrad)" stroke="#4A9EFF" strokeWidth="1.2" />
+
+              {/* Body surface marks */}
+              <line x1="88" y1="108" x2="192" y2="108" stroke="#4A9EFF" strokeWidth="0.3" opacity="0.15" />
+              <line x1="88" y1="172" x2="192" y2="172" stroke="#4A9EFF" strokeWidth="0.3" opacity="0.15" />
+              <line x1="108" y1="88" x2="108" y2="192" stroke="#4A9EFF" strokeWidth="0.3" opacity="0.15" />
+              <line x1="172" y1="88" x2="172" y2="192" stroke="#4A9EFF" strokeWidth="0.3" opacity="0.15" />
+
+              {/* Die window */}
+              <rect x="108" y="108" width="64" height="64" rx="1.5" fill="url(#dieAreaGrad)" stroke="#00FF88" strokeWidth="0.8" strokeDasharray="4 2" />
+
+              {/* Die interconnect grid */}
+              {[116,124,132,140,148,156,164].map(v => (
+                <line key={`dg-h-${v}`} x1="108" y1={v} x2="172" y2={v} stroke="#00FF88" strokeWidth="0.25" opacity="0.18" />
+              ))}
+              {[116,124,132,140,148,156,164].map(v => (
+                <line key={`dg-v-${v}`} x1={v} y1="108" x2={v} y2="172" stroke="#00FF88" strokeWidth="0.25" opacity="0.18" />
+              ))}
+
+              {/* Die labels */}
+              <text x="140" y="134" textAnchor="middle" fill="#00FF88" fontSize="7" fontFamily="monospace" fontWeight="bold" opacity="0.9">ANORA</text>
+              <text x="140" y="144" textAnchor="middle" fill="#00FF88" fontSize="5.5" fontFamily="monospace" opacity="0.65">SEM-28N-2024A</text>
+              <text x="140" y="154" textAnchor="middle" fill="#4A9EFF" fontSize="5" fontFamily="monospace" opacity="0.5">RTL: ADR · PASS</text>
+
+              {/* Pin 1 marker */}
+              <circle cx="93" cy="93" r="3.5" fill="#FFB347" opacity="0.85" filter="url(#pkgPinGlow)" />
+
+              {/* ── Left pins (8) ── */}
+              {[104,115,126,137,148,159,170,181].map((y, i) => (
+                <g key={`lp-${i}`}>
+                  <rect x="70" y={y - 3} width="18" height="6" rx="0.8" fill="#1a2535" stroke="#4A9EFF" strokeWidth="0.9" />
+                  <rect x="70" y={y - 1} width="18" height="2" rx="0.5" fill="#4A9EFF" opacity="0.12" />
+                </g>
+              ))}
+              {/* ── Right pins (8) ── */}
+              {[104,115,126,137,148,159,170,181].map((y, i) => (
+                <g key={`rp-${i}`}>
+                  <rect x="192" y={y - 3} width="18" height="6" rx="0.8" fill="#1a2535" stroke="#4A9EFF" strokeWidth="0.9" />
+                  <rect x="192" y={y - 1} width="18" height="2" rx="0.5" fill="#4A9EFF" opacity="0.12" />
+                </g>
+              ))}
+              {/* ── Top pins (8) ── */}
+              {[104,115,126,137,148,159,170,181].map((x, i) => (
+                <g key={`tp-${i}`}>
+                  <rect x={x - 3} y="70" width="6" height="18" rx="0.8" fill="#1a2535" stroke="#4A9EFF" strokeWidth="0.9" />
+                  <rect x={x - 1} y="70" width="2" height="18" rx="0.5" fill="#4A9EFF" opacity="0.12" />
+                </g>
+              ))}
+              {/* ── Bottom pins (8) ── */}
+              {[104,115,126,137,148,159,170,181].map((x, i) => (
+                <g key={`bp-${i}`}>
+                  <rect x={x - 3} y="192" width="6" height="18" rx="0.8" fill="#1a2535" stroke="#4A9EFF" strokeWidth="0.9" />
+                  <rect x={x - 1} y="192" width="2" height="18" rx="0.5" fill="#4A9EFF" opacity="0.12" />
+                </g>
+              ))}
+
+              {/* Bond wires — arcing from die edge to package inner pad */}
+              {/* Left side */}
+              {[104,115,126,137,148,159,170,181].map((y, i) => (
+                <path key={`bwl-${i}`} d={`M 108,${y} Q 97,${y - 8} 88,${y}`} fill="none" stroke="#FFB347" strokeWidth="0.65" opacity="0.55" />
+              ))}
+              {/* Right side */}
+              {[104,115,126,137,148,159,170,181].map((y, i) => (
+                <path key={`bwr-${i}`} d={`M 172,${y} Q 183,${y - 8} 192,${y}`} fill="none" stroke="#FFB347" strokeWidth="0.65" opacity="0.55" />
+              ))}
+              {/* Top side */}
+              {[104,115,126,137,148,159,170,181].map((x, i) => (
+                <path key={`bwt-${i}`} d={`M ${x},108 Q ${x - 8},97 ${x},88`} fill="none" stroke="#FFB347" strokeWidth="0.65" opacity="0.55" />
+              ))}
+              {/* Bottom side */}
+              {[104,115,126,137,148,159,170,181].map((x, i) => (
+                <path key={`bwb-${i}`} d={`M ${x},172 Q ${x - 8},183 ${x},192`} fill="none" stroke="#FFB347" strokeWidth="0.65" opacity="0.55" />
+              ))}
+
+              {/* Animated signal dots along bond wires */}
+              {/* Left side signals */}
+              <circle r="1.8" fill="#00FF88" filter="url(#pkgPinGlow)">
+                <animateMotion dur="1.1s" repeatCount="indefinite" begin="0s"    path="M 108,104 Q 97,96 88,104" />
+              </circle>
+              <circle r="1.8" fill="#4A9EFF" filter="url(#pkgPinGlow)">
+                <animateMotion dur="0.9s" repeatCount="indefinite" begin="0.4s"  path="M 108,137 Q 97,129 88,137" />
+              </circle>
+              <circle r="1.8" fill="#00FF88" filter="url(#pkgPinGlow)">
+                <animateMotion dur="1.3s" repeatCount="indefinite" begin="0.7s"  path="M 108,170 Q 97,162 88,170" />
+              </circle>
+              {/* Right side signals */}
+              <circle r="1.8" fill="#FFB347" filter="url(#pkgPinGlow)">
+                <animateMotion dur="1.0s" repeatCount="indefinite" begin="0.2s"  path="M 172,115 Q 183,107 192,115" />
+              </circle>
+              <circle r="1.8" fill="#4A9EFF" filter="url(#pkgPinGlow)">
+                <animateMotion dur="1.2s" repeatCount="indefinite" begin="0.55s" path="M 172,148 Q 183,140 192,148" />
+              </circle>
+              {/* Top side signals */}
+              <circle r="1.8" fill="#00FF88" filter="url(#pkgPinGlow)">
+                <animateMotion dur="0.85s" repeatCount="indefinite" begin="0.1s" path="M 126,108 Q 118,97 126,88" />
+              </circle>
+              <circle r="1.8" fill="#FF6B9D" filter="url(#pkgPinGlow)">
+                <animateMotion dur="1.15s" repeatCount="indefinite" begin="0.5s" path="M 159,108 Q 151,97 159,88" />
+              </circle>
+              {/* Bottom side signals */}
+              <circle r="1.8" fill="#4A9EFF" filter="url(#pkgPinGlow)">
+                <animateMotion dur="1.05s" repeatCount="indefinite" begin="0.3s" path="M 137,172 Q 129,183 137,192" />
+              </circle>
+              <circle r="1.8" fill="#B347FF" filter="url(#pkgPinGlow)">
+                <animateMotion dur="0.95s" repeatCount="indefinite" begin="0.65s" path="M 170,172 Q 162,183 170,192" />
+              </circle>
+
+              {/* Bottom annotations */}
+              <text x="20" y="255" fill="#FFB347" fontSize="7" fontFamily="monospace" opacity="0.6">─── Bond wire</text>
+              <rect x="115" y="251" width="10" height="5" fill="#1a2535" stroke="#4A9EFF" strokeWidth="0.8" />
+              <text x="129" y="256" fill="#4A9EFF" fontSize="7" fontFamily="monospace" opacity="0.6">I/O pin</text>
+              <text x="185" y="255" fill="#4A9EFF" fontSize="7" fontFamily="monospace" opacity="0.4">14×14mm</text>
+
+              {/* Pin numbers (corners only for readability) */}
+              <text x="63" y="107" fill="#4A9EFF" fontSize="5.5" fontFamily="monospace" opacity="0.45" textAnchor="end">1</text>
+              <text x="63" y="184" fill="#4A9EFF" fontSize="5.5" fontFamily="monospace" opacity="0.35" textAnchor="end">8</text>
+              <text x="217" y="107" fill="#4A9EFF" fontSize="5.5" fontFamily="monospace" opacity="0.35">9</text>
+              <text x="210" y="184" fill="#4A9EFF" fontSize="5.5" fontFamily="monospace" opacity="0.35">16</text>
             </svg>
           </div>
 
