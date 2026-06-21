@@ -77,26 +77,7 @@ body {
   z-index: 10;
 }
 
-/* Logic gate signal animation */
-@keyframes signal-sweep {
-  0% {
-    stroke-dashoffset: 200;
-    opacity: 0.3;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    stroke-dashoffset: 0;
-    opacity: 0.3;
-  }
-}
-
-.signal-line {
-  stroke-dasharray: 200;
-  stroke-dashoffset: 200;
-  animation: signal-sweep 2.5s ease-in-out infinite;
-}
+/* signal-sweep removed — gates now respond to mouse proximity via JS */
 
 /* Neon glow pulse */
 @keyframes neon-pulse {
