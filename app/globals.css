@@ -129,6 +129,24 @@ body {
   }
 }
 
+/* Hoverable dim text — glows on mouse-over */
+.hover-glow {
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+.hover-glow:hover {
+  color: #E8EAF0 !important;
+  text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+}
+
+/* Gray monospace comment/label text brightens on hover site-wide */
+p.font-mono:hover,
+span.font-mono:hover,
+div.font-mono:hover {
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+  color: rgba(232, 234, 240, 0.75) !important;
+  text-shadow: 0 0 8px rgba(0, 255, 136, 0.2);
+}
+
 /* Cursor styles */
 #eda-cursor {
   position: fixed;

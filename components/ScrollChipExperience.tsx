@@ -23,20 +23,22 @@ const sections = [
           UC Santa Cruz, currently deep in the world of{" "}
           <span className="text-[#00FF88] font-bold">neuromorphic chip design</span> — building
           hardware that mimics how biological neurons compute, targeting ultra-low-power
-          edge inference at the silicon level.
+          edge inference at the silicon level. (Yes, I&apos;m trying to make chips think. No pressure.)
         </p>
         <p className="font-mono text-sm text-[#E8EAF0]/80 leading-relaxed">
           Before grad school, I spent{" "}
           <span className="text-[#4A9EFF] font-bold">4 years as a Post-Silicon Validation Engineer II</span>{" "}
           at <span className="text-[#4A9EFF]">Anora Semiconductor Labs</span>, where I owned
-          silicon bring-up and functional validation of mixed-signal SoCs using Teradyne ATE, JTAG,
-          and bench debug — bridging the gap between RTL intent and real silicon behavior.
+          silicon bring-up and functional validation of mixed-signal SoCs — bridging the gap between
+          RTL intent and real silicon behavior. Translation: I poked chips with probes until they
+          confessed what was wrong.
         </p>
         <p className="font-mono text-sm text-[#8899AA] leading-relaxed">
           My work spans the full stack: RTL design in Verilog/SystemVerilog, physical implementation
           in Cadence Innovus, and post-silicon debug. I care about the intersection of
           <span className="text-[#FFB347]"> emerging compute paradigms</span> and
           <span className="text-[#FFB347]"> physical implementation constraints</span>.
+          Basically, I want fast chips that don&apos;t melt.
         </p>
         <div className="flex flex-wrap gap-2 pt-2">
           {["Neuromorphic", "RISC-V", "RTL Design", "Physical Design", "Post-Si Validation"].map(t => (
@@ -271,7 +273,7 @@ export default function ScrollChipExperience() {
               </h2>
 
               {/* Content */}
-              <div className="max-h-[60vh] overflow-y-auto pr-2 scrollbar-thin">
+              <div className="overflow-y-auto pr-2" style={{ maxHeight: "calc(100vh - 220px)" }}>
                 {section.content}
               </div>
 

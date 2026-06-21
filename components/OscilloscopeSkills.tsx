@@ -5,10 +5,10 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const skills = [
-  { name: "Verilog", level: 0.95, color: "#00FF88", freq: 1.2 },
-  { name: "SystemVerilog", level: 0.9, color: "#4A9EFF", freq: 1.5 },
-  { name: "C++", level: 0.8, color: "#FFB347", freq: 0.9 },
-  { name: "Python", level: 0.65, color: "#FF6B9D", freq: 2.1 },
+  { name: "Verilog", level: 0.95, color: "#00FF88", freq: 3.2 },
+  { name: "SystemVerilog", level: 0.9, color: "#4A9EFF", freq: 2.5 },
+  { name: "C++", level: 0.8, color: "#FFB347", freq: 1.8 },
+  { name: "Python", level: 0.65, color: "#FF6B9D", freq: 1.2 },
   { name: "Physical Design", level: 0.85, color: "#B347FF", freq: 0.7 },
 ];
 
@@ -184,7 +184,7 @@ export default function OscilloscopeSkills() {
         <div className="flex items-center gap-4 mb-4">
           <div className="w-8 h-px bg-[#FFB347]" />
           <span className="font-mono text-xs text-[#FFB347]/60 tracking-widest uppercase">
-            Zone C — Oscilloscope Skills
+            Zone C — Skill Analysis
           </span>
         </div>
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">

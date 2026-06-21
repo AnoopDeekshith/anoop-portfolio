@@ -289,7 +289,7 @@ export default function ProjectCards() {
           </span>
         </div>
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
-          Design Portfolio
+          Projects
         </h2>
         <p className="font-mono text-sm text-[#8899AA] mb-10">
           {"// Hover cards to view metrics  |  5 projects  |  RTL · Physical · ML"}
