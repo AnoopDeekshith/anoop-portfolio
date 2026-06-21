@@ -1,26 +1,160 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-silicon: #0A0A0F;
+  --color-neon: #00FF88;
+  --color-signal: #4A9EFF;
+  --color-amber: #FFB347;
+  --color-panel: #0D1117;
+  --color-border: #1E2A3A;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #0A0A0F;
+  --foreground: #E8EAF0;
+  --neon: #00FF88;
+  --signal: #4A9EFF;
+  --amber: #FFB347;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #0A0A0F;
 }
 
 body {
-  background: var(--background);
+  background-color: #0A0A0F;
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0A0A0F;
+}
+::-webkit-scrollbar-thumb {
+  background: #00FF88;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00cc6a;
+}
+
+/* Custom cursor */
+*, *::before, *::after {
+  cursor: none !important;
+}
+
+/* Dot grid background utility */
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(0, 255, 136, 0.15) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* CRT scanline effect */
+.scanlines {
+  position: relative;
+}
+.scanlines::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 255, 136, 0.03) 2px,
+    rgba(0, 255, 136, 0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Logic gate signal animation */
+@keyframes signal-sweep {
+  0% {
+    stroke-dashoffset: 200;
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0.3;
+  }
+}
+
+.signal-line {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: signal-sweep 2.5s ease-in-out infinite;
+}
+
+/* Neon glow pulse */
+@keyframes neon-pulse {
+  0%, 100% {
+    box-shadow: 0 0 5px #00FF88, 0 0 10px #00FF88, 0 0 20px #00FF88;
+  }
+  50% {
+    box-shadow: 0 0 10px #00FF88, 0 0 25px #00FF88, 0 0 50px #00FF88;
+  }
+}
+
+/* Caret bounce */
+@keyframes caret-bounce {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(8px); opacity: 0.5; }
+}
+
+/* Pipeline glow */
+@keyframes pipeline-glow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* Chip block animate in */
+@keyframes block-appear {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Signal trace animation */
+@keyframes trace-draw {
+  from { stroke-dashoffset: 300; }
+  to { stroke-dashoffset: 0; }
+}
+
+/* Download button glow */
+@keyframes btn-glow {
+  0%, 100% {
+    box-shadow: 0 0 8px #00FF88, 0 0 16px rgba(0,255,136,0.4);
+  }
+  50% {
+    box-shadow: 0 0 16px #00FF88, 0 0 40px rgba(0,255,136,0.6), 0 0 60px rgba(0,255,136,0.2);
+  }
+}
+
+/* Cursor styles */
+#eda-cursor {
+  position: fixed;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.05s linear;
 }
