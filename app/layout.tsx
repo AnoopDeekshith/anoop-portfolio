@@ -15,9 +15,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Anoop Deekshith R — RTL & Physical Design Engineer",
+  title: "Anoop Deekshith Ravikumar — RTL & Physical Design Engineer",
   description:
-    "Portfolio of Anoop Deekshith R — RTL Design, Physical Design, and Post-Silicon Validation Engineer. RISC-V, Verilog, SystemVerilog, Cadence Innovus.",
+    "Portfolio of Anoop Deekshith Ravikumar — RTL Design, Physical Design, and Post-Silicon Validation Engineer. RISC-V, Verilog, SystemVerilog, Cadence Innovus.",
   keywords: [
     "RTL Design",
     "Physical Design",
@@ -28,6 +28,12 @@ export const metadata: Metadata = {
     "FPGA",
     "Chip Design",
   ],
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: "/icon.svg",
+  },
 };
 
 export default function RootLayout({

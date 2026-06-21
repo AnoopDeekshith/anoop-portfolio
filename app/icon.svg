@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <rect width="32" height="32" fill="#0A0A0F"/>
+  <!-- Chip-pin shape with notch on top-right corner -->
+  <polygon
+    points="2,2 22,2 30,10 30,30 2,30"
+    fill="#0A0A0F"
+    stroke="#00FF88"
+    stroke-width="1.5"
+  />
+  <!-- AD text -->
+  <text
+    x="16"
+    y="21"
+    text-anchor="middle"
+    font-family="monospace"
+    font-size="11"
+    font-weight="bold"
+    fill="#00FF88"
+    letter-spacing="1"
+  >AD</text>
+</svg>
