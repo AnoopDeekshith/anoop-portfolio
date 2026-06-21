@@ -2,43 +2,34 @@
 
 import dynamic from "next/dynamic";
 
-const PipelineReveal = dynamic(() => import("@/components/PipelineReveal"), {
-  ssr: false,
-  loading: () => (
-    <div className="py-24 flex items-center justify-center">
-      <span className="font-mono text-xs text-[#00FF88]/40 animate-pulse">
-        {"// Loading pipeline..."}
-      </span>
-    </div>
-  ),
-});
-
-const ChipFloorplan = dynamic(() => import("@/components/ChipFloorplan"), {
-  ssr: false,
-  loading: () => (
-    <div className="py-24 flex items-center justify-center">
-      <span className="font-mono text-xs text-[#4A9EFF]/40 animate-pulse">
-        {"// Loading floorplan..."}
-      </span>
-    </div>
-  ),
-});
-
-const OscilloscopeSkills = dynamic(
-  () => import("@/components/OscilloscopeSkills"),
+const ScrollChipExperience = dynamic(
+  () => import("@/components/ScrollChipExperience"),
   {
     ssr: false,
     loading: () => (
-      <div className="py-24 flex items-center justify-center">
-        <span className="font-mono text-xs text-[#FFB347]/40 animate-pulse">
-          {"// Loading oscilloscope..."}
+      <div className="h-screen flex items-center justify-center">
+        <span className="font-mono text-xs text-[#00FF88]/40 animate-pulse">
+          {"// Initializing chip renderer..."}
         </span>
       </div>
     ),
   }
 );
 
+const WaferSection = dynamic(() => import("@/components/WaferSection"), {
+  ssr: false,
+});
+
+const OscilloscopeSkills = dynamic(
+  () => import("@/components/OscilloscopeSkills"),
+  { ssr: false }
+);
+
 const ProjectCards = dynamic(() => import("@/components/ProjectCards"), {
+  ssr: false,
+});
+
+const BlogSection = dynamic(() => import("@/components/BlogSection"), {
   ssr: false,
 });
 
@@ -46,46 +37,43 @@ const VRAMResume = dynamic(() => import("@/components/VRAMResume"), {
   ssr: false,
 });
 
+function Divider() {
+  return (
+    <div className="max-w-6xl mx-auto px-6">
+      <div className="h-px bg-gradient-to-r from-transparent via-[#1E2A3A] to-transparent" />
+    </div>
+  );
+}
+
 export default function ClientSections() {
   return (
     <>
-      {/* Scroll experience zones */}
-      <div className="relative">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex items-center gap-4 py-2">
-            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-[#1E2A3A] to-transparent" />
-            <span className="font-mono text-[9px] text-[#8899AA]/30 tracking-widest">
-              SCROLL_EXPERIENCE
-            </span>
-            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-[#1E2A3A] to-transparent" />
-          </div>
-        </div>
+      {/* About + Chip Zoom Scroll Experience */}
+      <ScrollChipExperience />
 
-        <PipelineReveal />
+      <Divider />
 
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="h-px bg-gradient-to-r from-transparent via-[#1E2A3A] to-transparent" />
-        </div>
+      {/* ATE Validation / Wafer + Skills */}
+      <WaferSection />
 
-        <ChipFloorplan />
+      <Divider />
 
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="h-px bg-gradient-to-r from-transparent via-[#1E2A3A] to-transparent" />
-        </div>
+      {/* Oscilloscope Skills */}
+      <OscilloscopeSkills />
 
-        <OscilloscopeSkills />
-      </div>
+      <Divider />
 
       {/* Projects */}
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="h-px bg-gradient-to-r from-transparent via-[#1E2A3A] to-transparent" />
-      </div>
       <ProjectCards />
 
-      {/* Resume */}
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="h-px bg-gradient-to-r from-transparent via-[#1E2A3A] to-transparent" />
-      </div>
+      <Divider />
+
+      {/* Blog */}
+      <BlogSection />
+
+      <Divider />
+
+      {/* Resume VRAM */}
       <VRAMResume />
     </>
   );

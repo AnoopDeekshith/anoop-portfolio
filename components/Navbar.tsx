@@ -5,8 +5,9 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const navItems = [
   { label: "home", href: "#hero" },
-  { label: "about", href: "#pipeline" },
+  { label: "about", href: "#about" },
   { label: "projects", href: "#projects" },
+  { label: "blog", href: "#blog" },
   { label: "resume", href: "#resume" },
   { label: "contact", href: "#contact" },
 ];
@@ -20,7 +21,7 @@ export default function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 40);
 
-      const sections = ["hero", "pipeline", "projects", "resume", "contact"];
+      const sections = ["hero", "about", "projects", "blog", "resume", "contact"];
       const current = sections.findLast((id) => {
         const el = document.getElementById(id);
         if (!el) return false;
@@ -29,8 +30,10 @@ export default function Navbar() {
 
       const labelMap: Record<string, string> = {
         hero: "home",
-        pipeline: "about",
+        about: "about",
+        "ate-section": "about",
         projects: "projects",
+        blog: "blog",
         resume: "resume",
         contact: "contact",
       };

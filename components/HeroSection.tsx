@@ -30,7 +30,7 @@ const item = {
 
 export default function HeroSection() {
   const scrollDown = () => {
-    const el = document.getElementById("pipeline");
+    const el = document.getElementById("about");
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
@@ -72,19 +72,10 @@ export default function HeroSection() {
         {/* Name */}
         <motion.h1
           variants={item}
-          className="text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight leading-none mb-4"
+          className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight mb-4 text-[#00FF88]"
           style={{ fontFamily: "var(--font-inter), sans-serif" }}
         >
-          Anoop{" "}
-          <span
-            className="text-transparent"
-            style={{
-              WebkitTextStroke: "1px rgba(255,255,255,0.6)",
-            }}
-          >
-            Deekshith
-          </span>{" "}
-          <span className="text-[#00FF88]">R</span>
+          Anoop Deekshith Ravikumar
         </motion.h1>
 
         {/* Clock waveform */}

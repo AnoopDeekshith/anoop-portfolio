@@ -20,7 +20,7 @@ const projects = [
       { label: "Sim Platform", value: "Gem5 / Scarab" },
     ],
     desc: "Implemented Best-Offset (BO) hardware prefetcher for RISC-V memory hierarchy. Evaluated across 20 SPEC2017 benchmarks achieving 10.6% average IPC uplift and 52% L1 cache miss reduction.",
-    github: "https://github.com/anoopdeekshithece",
+    github: "https://github.com/AnoopDeekshith",
     icon: "⬡",
   },
   {
@@ -37,7 +37,7 @@ const projects = [
       { label: "Verification", value: "UVM" },
     ],
     desc: "Full RTL implementation of RV32I ISA with 5-stage in-order pipeline. Includes hazard detection, data forwarding, and UVM-based constrained-random verification environment in Xcelium.",
-    github: "https://github.com/anoopdeekshithece",
+    github: "https://github.com/AnoopDeekshith",
     icon: "⬢",
   },
   {
@@ -54,7 +54,7 @@ const projects = [
       { label: "LUT Usage", value: "<8%" },
     ],
     desc: "Parameterizable counter and synchronous SRAM modules synthesized on Xilinx Artix-7. Includes timing closure scripts and post-synthesis simulation with testbenches.",
-    github: "https://github.com/anoopdeekshithece",
+    github: "https://github.com/AnoopDeekshith",
     icon: "◈",
   },
   {
@@ -71,7 +71,7 @@ const projects = [
       { label: "IR Drop Target", value: "<5mV" },
     ],
     desc: "CNN-based model to predict supply voltage droop during physical implementation. Trained on Innovus IR-drop maps to proactively guide power grid insertion and reduce IR violations.",
-    github: "https://github.com/anoopdeekshithece",
+    github: "https://github.com/AnoopDeekshith",
     icon: "⬟",
   },
   {
@@ -88,7 +88,7 @@ const projects = [
       { label: "Precision", value: "FP32" },
     ],
     desc: "Hybrid FPGA+GPU matrix multiplication accelerator. VHDL handles data movement and tiling logic while CUDA kernels execute the multiply-accumulate using shared memory tiling for FP32 matrices.",
-    github: "https://github.com/anoopdeekshithece",
+    github: "https://github.com/AnoopDeekshith",
     icon: "◇",
   },
 ];
