@@ -419,12 +419,15 @@ export default function WaferSection() {
 
         {/* Skills grid */}
         <div className="mt-16">
-          <div className="flex items-center gap-4 mb-8">
+          <div className="flex items-center gap-4 mb-4">
             <div className="w-8 h-px bg-[#4A9EFF]" />
             <span className="font-mono text-xs text-[#4A9EFF]/60 tracking-widest uppercase">
               Technical Skills
             </span>
           </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-8">
+            Technical Skills
+          </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {skills.map((skill, i) => (
               <div

@@ -92,7 +92,7 @@ export default function VRAMResume() {
           </span>
         </div>
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
-          Memory Layout
+          Resume Memory Layout
         </h2>
         <p className="font-mono text-sm text-[#8899AA] mb-10">
           {"// GPU VRAM  |  Base addr: 0x0000  |  Segment: .resume"}
@@ -192,7 +192,7 @@ export default function VRAMResume() {
               <polyline points="7 10 12 15 17 10" />
               <line x1="12" y1="15" x2="12" y2="3" />
             </svg>
-            Download .PDF
+            Download Resume
           </a>
           <span className="font-mono text-xs text-[#8899AA]/50">
             {"// Last updated: 2025"}

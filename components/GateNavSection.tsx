@@ -46,7 +46,7 @@ function GateSVG({
 }) {
   const path   = paths[type];
   const ws     = wires[type];
-  const dim    = `${color}50`;
+  const dim    = `${color}90`;
   const bright = color;
 
   return (
@@ -66,7 +66,7 @@ function GateSVG({
       {/* Main gate body */}
       <path
         d={path}
-        fill={hovered ? `${color}12` : `${color}06`}
+        fill={hovered ? `${color}18` : `${color}10`}
         stroke={hovered ? bright : dim}
         strokeWidth={hovered ? 2 : 1.5}
         style={{ transition: "all 0.2s" }}
@@ -177,17 +177,23 @@ export default function GateNavSection() {
   };
 
   return (
-    <section ref={sectionRef} className="py-16 px-6 relative">
-      {/* Label */}
-      <div className="max-w-5xl mx-auto mb-6 flex items-center gap-4">
-        <div className="w-8 h-px bg-[#00FF88]" />
-        <span className="font-mono text-xs text-[#00FF88]/60 tracking-widest uppercase">
-          {"// Navi-Gate?"}
-        </span>
+    <section ref={sectionRef} className="min-h-screen px-6 relative flex flex-col items-center justify-center">
+      {/* Heading */}
+      <div className="w-full max-w-5xl mx-auto mb-10">
+        <div className="flex items-center gap-4 mb-4">
+          <div className="w-8 h-px bg-[#00FF88]" />
+          <span className="font-mono text-xs text-[#00FF88]/60 tracking-widest uppercase">
+            {"// Navi-Gate?"}
+          </span>
+        </div>
+        <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">Navigate</h2>
+        <p className="font-mono text-sm text-[#8899AA]">
+          Click a gate to jump to any section
+        </p>
       </div>
 
       {/* Gate row */}
-      <div className="max-w-5xl mx-auto">
+      <div className="w-full max-w-5xl mx-auto">
         {/* Connecting bus line */}
         <div className="relative flex items-center justify-between gap-1 sm:gap-3 md:gap-6">
           {/* Horizontal trace behind gates */}
@@ -223,7 +229,7 @@ export default function GateNavSection() {
               <div
                 className="w-full transition-all duration-200"
                 style={{
-                  height: "clamp(44px, 10vw, 72px)",
+                  height: "clamp(56px, 12vw, 100px)",
                   filter: hoveredIdx === i
                     ? `drop-shadow(0 0 12px ${gate.color}) drop-shadow(0 0 24px ${gate.color}80)`
                     : "none",
@@ -234,7 +240,7 @@ export default function GateNavSection() {
 
               {/* Desc below */}
               <span
-                className="font-mono text-[7px] sm:text-[9px] transition-all duration-200 hidden sm:block"
+                className="font-mono text-[8px] sm:text-[9px] transition-all duration-200"
                 style={{
                   color: hoveredIdx === i ? `${gate.color}90` : "#8899AA50",
                 }}

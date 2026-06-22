@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 const LogicGateBackground = dynamic(() => import("./LogicGateBackground"), { ssr: false });
 const LogicGateWidget = dynamic(() => import("./LogicGateWidget"), { ssr: false });
 
-const badges = ["Verilog", "SystemVerilog", "C++", "Neuromorphic"];
 
 const container = {
   hidden: { opacity: 0 },
@@ -133,23 +132,20 @@ export default function HeroSection() {
         {/* Subtitle */}
         <motion.p
           variants={item}
-          className="font-mono text-sm md:text-base text-[#8899AA] tracking-widest mb-6"
+          className="font-mono text-sm md:text-base text-[#8899AA] tracking-widest mb-3"
         >
           RTL Design{"  ·  "}Physical Design{"  ·  "}Post-Silicon Validation
         </motion.p>
 
-        {/* Badge pills */}
-        <motion.div variants={item} className="flex gap-2 flex-wrap justify-center mb-8">
-          {badges.map((badge) => (
-            <span
-              key={badge}
-              className="font-mono text-xs px-4 py-1.5 border border-[#00FF88]/40 text-[#00FF88] bg-[#00FF88]/5 tracking-wider"
-              style={{ clipPath: "polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%)" }}
-            >
-              {badge}
-            </span>
-          ))}
-        </motion.div>
+        {/* Tech stack — terminal style */}
+        <motion.p
+          variants={item}
+          className="font-mono text-xs md:text-sm tracking-wider mb-8"
+          style={{ color: "#00FF88B0" }}
+        >
+          <span className="text-[#00FF88]/50 mr-2">{">"}</span>
+          Verilog · SystemVerilog · C++ · Neuromorphic
+        </motion.p>
 
         {/* Logic gate widget */}
         <motion.div variants={item} className="w-full max-w-lg mb-8">
@@ -159,7 +155,7 @@ export default function HeroSection() {
         {/* Status line */}
         <motion.div
           variants={item}
-          className="font-mono text-xs text-[#4A9EFF]/60 tracking-wider mb-4"
+          className="font-mono text-xs text-white/70 tracking-wider mb-4"
         >
           <span className="text-[#00FF88]">●</span> READY{"  "}|{"  "}
           M.S. ECE @ UC Santa Cruz{"  "}|{"  "}San Francisco, CA

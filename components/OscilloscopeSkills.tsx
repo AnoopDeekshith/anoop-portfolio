@@ -187,11 +187,11 @@ export default function OscilloscopeSkills() {
         <div className="flex items-center gap-4 mb-4">
           <div className="w-8 h-px bg-[#FFB347]" />
           <span className="font-mono text-xs text-[#FFB347]/60 tracking-widest uppercase">
-            Zone C — Skill Analysis
+            Technical Skill Analysis
           </span>
         </div>
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
-          Signal Analysis
+          Skill Analysis
         </h2>
         <p className="font-mono text-sm text-[#8899AA] mb-8">
           {"// Frequency = proficiency  |  5 channels  |  Live render"}
