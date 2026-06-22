@@ -4,7 +4,7 @@ import { Analytics } from "@vercel/analytics/react";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import "./globals.css";
 
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? "G-EWZX2WE0TX";
+const GA_ID = "G-EWZX2WE0TX";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -51,6 +51,23 @@ export default function RootLayout({
       className={`${inter.variable} ${jetbrainsMono.variable}`}
       suppressHydrationWarning
     >
+      <head>
+        {/* Google Analytics 4 */}
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GA_ID}');
+            `,
+          }}
+        />
+      </head>
       <body className="bg-[#0A0A0F] text-white antialiased overflow-x-hidden">
         {/* EDA crosshair cursor */}
         <svg
@@ -89,9 +106,6 @@ export default function RootLayout({
 
         {/* Vercel Analytics */}
         <Analytics />
-
-        {/* Google Analytics 4 */}
-        <GoogleAnalytics id={GA_ID} />
       </body>
     </html>
   );
