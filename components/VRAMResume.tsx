@@ -132,23 +132,23 @@ export default function VRAMResume() {
                 className="flex items-start px-4 py-3 hover:bg-[#00FF88]/3 transition-colors group"
                 style={{ opacity: 0 }}
               >
-                {/* Address */}
-                <span className="font-mono text-xs text-[#8899AA]/50 w-20 shrink-0 group-hover:text-[#8899AA] transition-colors">
+                {/* Address — hide on very small screens */}
+                <span className="hidden sm:inline font-mono text-xs text-[#8899AA]/50 w-20 shrink-0 group-hover:text-[#8899AA] transition-colors">
                   {entry.addr}
                 </span>
                 {/* Key */}
                 <span
-                  className="font-mono text-xs w-16 shrink-0 font-bold"
+                  className="font-mono text-[10px] sm:text-xs w-14 sm:w-16 shrink-0 font-bold"
                   style={{ color: entry.color }}
                 >
                   {entry.key}
                 </span>
-                {/* Type */}
-                <span className="font-mono text-[9px] w-12 shrink-0 text-[#8899AA]/40 mt-0.5">
+                {/* Type — hide on mobile */}
+                <span className="hidden sm:inline font-mono text-[9px] w-12 shrink-0 text-[#8899AA]/40 mt-0.5">
                   [{entry.type}]
                 </span>
                 {/* Value */}
-                <span className="font-mono text-xs text-[#E8EAF0]/80 group-hover:text-white transition-colors">
+                <span className="font-mono text-[10px] sm:text-xs text-[#E8EAF0]/80 group-hover:text-white transition-colors min-w-0 break-words">
                   &ldquo;{entry.value}&rdquo;
                 </span>
               </div>
@@ -200,7 +200,7 @@ export default function VRAMResume() {
         </div>
 
         {/* Experience timeline */}
-        <div className="mt-12 grid md:grid-cols-2 gap-4">
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="border border-[#1E2A3A] bg-[#0D1117] p-6">
             <div className="font-mono text-[10px] text-[#00FF88]/60 tracking-widest uppercase mb-3">
               Education

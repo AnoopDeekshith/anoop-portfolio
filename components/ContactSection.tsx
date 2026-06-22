@@ -98,9 +98,9 @@ export default function ContactSection() {
                   >
                     {c.icon}
                   </div>
-                  <div className="flex-1 min-w-0">
+                  <div className="flex-1 min-w-0 overflow-hidden">
                     <span
-                      className="font-mono text-sm transition-colors group-hover:underline underline-offset-2"
+                      className="font-mono text-xs sm:text-sm transition-colors group-hover:underline underline-offset-2 break-all"
                       style={{ color: c.color }}
                     >
                       {c.label}

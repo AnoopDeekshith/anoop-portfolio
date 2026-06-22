@@ -252,12 +252,12 @@ export default function ScrollChipExperience() {
         className="sticky top-0 h-screen w-full overflow-hidden flex"
       >
         {/* Left: content panels */}
-        <div className="relative w-full md:w-[42%] flex flex-col justify-center px-8 md:px-12 z-10">
+        <div className="relative w-full md:w-[42%] flex flex-col justify-center px-4 sm:px-8 md:px-12 z-10">
           {sections.map((section, i) => (
             <div
               key={section.id}
               ref={(el) => { panelRefs.current[i] = el; }}
-              className="absolute inset-0 flex flex-col justify-center px-8 md:px-12"
+              className="absolute inset-0 flex flex-col justify-center px-4 sm:px-8 md:px-12"
               style={{ opacity: 0 }}
             >
               {/* Section label */}
@@ -273,14 +273,14 @@ export default function ScrollChipExperience() {
 
               {/* Title */}
               <h2
-                className="text-2xl md:text-3xl font-bold text-white mb-5 leading-tight"
+                className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-3 sm:mb-5 leading-tight"
                 style={{ fontFamily: "var(--font-inter), sans-serif" }}
               >
                 {section.title}
               </h2>
 
               {/* Content */}
-              <div className="overflow-y-auto pr-2" style={{ maxHeight: "calc(100vh - 220px)" }}>
+              <div className="overflow-y-auto pr-2" style={{ maxHeight: "calc(100vh - 160px)" }}>
                 {section.content}
               </div>
 

@@ -58,7 +58,8 @@ export default function OscilloscopeSkills() {
       const h = canvas.offsetHeight;
       ctx.clearRect(0, 0, w, h);
 
-      const signalW = w - LABEL_WIDTH;
+      const labelW = w < 480 ? 80 : LABEL_WIDTH;
+      const signalW = w - labelW;
       const offset = offsetRef.current;
 
       skills.forEach((skill, i) => {
@@ -68,17 +69,17 @@ export default function OscilloscopeSkills() {
 
         // Channel background
         ctx.fillStyle = i % 2 === 0 ? "rgba(0,255,136,0.02)" : "rgba(0,0,0,0)";
-        ctx.fillRect(LABEL_WIDTH, channelY, signalW, CHANNEL_HEIGHT);
+        ctx.fillRect(labelW, channelY, signalW, CHANNEL_HEIGHT);
 
         // Grid lines
         ctx.strokeStyle = "rgba(255,255,255,0.06)";
         ctx.lineWidth = 0.5;
         ctx.beginPath();
-        ctx.moveTo(LABEL_WIDTH, channelY);
+        ctx.moveTo(labelW, channelY);
         ctx.lineTo(w, channelY);
         ctx.stroke();
         ctx.beginPath();
-        ctx.moveTo(LABEL_WIDTH, midY);
+        ctx.moveTo(labelW, midY);
         ctx.lineTo(w, midY);
         ctx.stroke();
 
@@ -86,13 +87,13 @@ export default function OscilloscopeSkills() {
         ctx.strokeStyle = "rgba(255,255,255,0.08)";
         ctx.lineWidth = 1;
         ctx.beginPath();
-        ctx.moveTo(LABEL_WIDTH, channelY + CHANNEL_HEIGHT - 1);
+        ctx.moveTo(labelW, channelY + CHANNEL_HEIGHT - 1);
         ctx.lineTo(w, channelY + CHANNEL_HEIGHT - 1);
         ctx.stroke();
 
         // Channel label panel
         ctx.fillStyle = "#060B10";
-        ctx.fillRect(0, channelY, LABEL_WIDTH - 4, CHANNEL_HEIGHT);
+        ctx.fillRect(0, channelY, labelW - 4, CHANNEL_HEIGHT);
 
         // Channel number
         ctx.fillStyle = "rgba(136,153,170,0.4)";
@@ -101,15 +102,17 @@ export default function OscilloscopeSkills() {
 
         // Skill name
         ctx.fillStyle = skill.color;
-        ctx.font = "bold 11px JetBrains Mono, monospace";
-        ctx.fillText(skill.name, 8, channelY + 32);
+        ctx.font = `bold ${w < 480 ? "9" : "11"}px JetBrains Mono, monospace`;
+        ctx.fillText(w < 480 ? skill.name.split(" ")[0] : skill.name, 6, channelY + (w < 480 ? 26 : 32));
 
-        // Level badge
-        ctx.fillStyle = `${skill.color}20`;
-        ctx.fillRect(6, channelY + 38, LABEL_WIDTH - 16, 14);
-        ctx.fillStyle = skill.color;
-        ctx.font = "8px JetBrains Mono, monospace";
-        ctx.fillText(`${Math.round(skill.level * 100)}%`, 10, channelY + 49);
+        // Level badge (hide on very small screens)
+        if (w >= 480) {
+          ctx.fillStyle = `${skill.color}20`;
+          ctx.fillRect(6, channelY + 38, labelW - 16, 14);
+          ctx.fillStyle = skill.color;
+          ctx.font = "8px JetBrains Mono, monospace";
+          ctx.fillText(`${Math.round(skill.level * 100)}%`, 10, channelY + 49);
+        }
 
         // Waveform
         ctx.shadowColor = skill.color;
@@ -127,8 +130,8 @@ export default function OscilloscopeSkills() {
               Math.sin(t * Math.PI * 0.5 + i) *
               visibleRef.current;
 
-          if (x === 0) ctx.moveTo(LABEL_WIDTH + x, y);
-          else ctx.lineTo(LABEL_WIDTH + x, y);
+          if (x === 0) ctx.moveTo(labelW + x, y);
+          else ctx.lineTo(labelW + x, y);
         }
         ctx.stroke();
         ctx.shadowBlur = 0;
@@ -138,7 +141,7 @@ export default function OscilloscopeSkills() {
         ctx.lineWidth = 0.5;
         ctx.setLineDash([3, 6]);
         ctx.beginPath();
-        ctx.moveTo(LABEL_WIDTH, midY - amplitude);
+        ctx.moveTo(labelW, midY - amplitude);
         ctx.lineTo(w, midY - amplitude);
         ctx.stroke();
         ctx.setLineDash([]);
@@ -146,7 +149,7 @@ export default function OscilloscopeSkills() {
         // Frequency label
         ctx.fillStyle = `${skill.color}60`;
         ctx.font = "8px JetBrains Mono, monospace";
-        ctx.fillText(`${skill.freq.toFixed(1)} MHz`, LABEL_WIDTH + 4, midY - amplitude - 3);
+        ctx.fillText(`${skill.freq.toFixed(1)} MHz`, labelW + 4, midY - amplitude - 3);
       });
 
       // Time axis at bottom
@@ -154,7 +157,7 @@ export default function OscilloscopeSkills() {
       ctx.strokeStyle = "rgba(136,153,170,0.2)";
       ctx.lineWidth = 0.5;
       ctx.beginPath();
-      ctx.moveTo(LABEL_WIDTH, bottomY);
+      ctx.moveTo(labelW, bottomY);
       ctx.lineTo(w, bottomY);
       ctx.stroke();
 

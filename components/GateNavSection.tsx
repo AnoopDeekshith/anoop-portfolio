@@ -189,7 +189,7 @@ export default function GateNavSection() {
       {/* Gate row */}
       <div className="max-w-5xl mx-auto">
         {/* Connecting bus line */}
-        <div className="relative flex items-center justify-between gap-4 md:gap-6">
+        <div className="relative flex items-center justify-between gap-1 sm:gap-3 md:gap-6">
           {/* Horizontal trace behind gates */}
           <div
             className="absolute top-[44%] left-0 right-0 h-px pointer-events-none"
@@ -210,7 +210,7 @@ export default function GateNavSection() {
             >
               {/* Section name above */}
               <span
-                className="font-mono text-[10px] md:text-xs tracking-widest font-bold transition-all duration-200"
+                className="font-mono text-[8px] sm:text-[10px] md:text-xs tracking-widest font-bold transition-all duration-200"
                 style={{
                   color: hoveredIdx === i ? gate.color : `${gate.color}60`,
                   textShadow: hoveredIdx === i ? `0 0 12px ${gate.color}` : "none",
@@ -223,7 +223,7 @@ export default function GateNavSection() {
               <div
                 className="w-full transition-all duration-200"
                 style={{
-                  height: 72,
+                  height: "clamp(44px, 10vw, 72px)",
                   filter: hoveredIdx === i
                     ? `drop-shadow(0 0 12px ${gate.color}) drop-shadow(0 0 24px ${gate.color}80)`
                     : "none",
@@ -234,7 +234,7 @@ export default function GateNavSection() {
 
               {/* Desc below */}
               <span
-                className="font-mono text-[9px] transition-all duration-200"
+                className="font-mono text-[7px] sm:text-[9px] transition-all duration-200 hidden sm:block"
                 style={{
                   color: hoveredIdx === i ? `${gate.color}90` : "#8899AA50",
                 }}

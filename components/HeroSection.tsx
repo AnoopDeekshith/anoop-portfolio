@@ -124,7 +124,7 @@ export default function HeroSection() {
         {/* Name — all green */}
         <motion.h1
           variants={item}
-          className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight mb-5 text-[#00FF88]"
+          className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight mb-5 text-[#00FF88]"
           style={{ fontFamily: "var(--font-inter), sans-serif" }}
         >
           Anoop Deekshith Ravikumar
