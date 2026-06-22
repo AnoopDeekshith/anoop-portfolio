@@ -4,7 +4,7 @@ import { Analytics } from "@vercel/analytics/react";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import "./globals.css";
 
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? "G-EWZX2WE0TX";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -91,7 +91,7 @@ export default function RootLayout({
         <Analytics />
 
         {/* Google Analytics 4 */}
-        {GA_ID && <GoogleAnalytics id={GA_ID} />}
+        <GoogleAnalytics id={GA_ID} />
       </body>
     </html>
   );
