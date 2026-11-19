@@ -12,6 +12,7 @@ export default function Photo({
   sizes,
   caption,
   position,
+  fit = "cover",
 }: {
   src: string;
   alt: string;
@@ -19,6 +20,8 @@ export default function Photo({
   sizes: string;
   caption?: string;
   position?: string;
+  /** "contain" shows the whole image (for charts/diagrams) instead of cropping */
+  fit?: "cover" | "contain";
 }) {
   const exists = publicFileExists(src);
 
@@ -31,7 +34,7 @@ export default function Photo({
             alt={alt}
             fill
             sizes={sizes}
-            className="object-cover"
+            className={fit === "contain" ? "object-contain p-3 sm:p-5" : "object-cover"}
             style={position ? { objectPosition: position } : undefined}
           />
         ) : (

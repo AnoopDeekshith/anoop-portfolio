@@ -17,6 +17,18 @@ export const nav = [
 /** Routes that open with a full-bleed image; the header starts transparent on these. */
 export const heroRoutes = ["/", "/experience", "/teaching", "/projects"];
 
+/**
+ * Home hero: homepage.mp4 from 1.0s to 3.0s as 60 still frames
+ * (lg/ 1920px and sm/ 1280px wide), scrubbed by scrolling
+ * (see components/ScrollVideoHero.tsx).
+ */
+export const heroVideo = {
+  frameDir: "/images/hero-frames",
+  frameCount: 60,
+  /** Vertical focal point kept in view when the portrait clip is cropped (0 top – 1 bottom) */
+  focusY: 0.45,
+};
+
 export const coverImage = {
   src: "/images/cover.png",
   alt: "Abstract render of layered glass circuitry",
@@ -81,5 +93,37 @@ export const contactPhoto: SitePhoto = {
   position: "50% 34%",
 };
 
-/** Project images live at /images/projects/<project slug>.jpg */
-export const projectImage = (slug: string) => `/images/projects/${slug}.jpg`;
+export interface ProjectImage {
+  src: string;
+  alt: string;
+  /** "cover" crops to fill the frame (photos); "contain" shows the whole image (charts, tables, diagrams) */
+  fit: "cover" | "contain";
+}
+
+/** One image per project, keyed by project slug (see packages/content/src/projects.ts) */
+export const projectImages: Record<string, ProjectImage> = {
+  "learned-logic-classifier": {
+    src: "/images/projects/learned-logic-classifier.jpg",
+    alt: "Small FPGA development board with status LEDs lit",
+    fit: "cover",
+  },
+  "best-offset-prefetcher": {
+    src: "/images/projects/best-offset-prefetcher.png",
+    alt: "Table comparing Next-Line, Sandbox and Best-Offset prefetchers on IPC speedup, L1/L2 miss reduction, accuracy and hardware overhead",
+    fit: "contain",
+  },
+  "spike-to-probability-bridge": {
+    src: "/images/projects/spike-to-probability-bridge.png",
+    alt: "Bar chart of interface power consumption: clocked digital/DAC baseline versus the proposed asynchronous bridge",
+    fit: "contain",
+  },
+  "fpga-counter-memory": {
+    src: "/images/projects/fpga-counter-memory.png",
+    alt: "Block diagram of an Intel Cyclone V SoC FPGA board and its peripherals",
+    fit: "contain",
+  },
+};
+
+/** Image for a project; falls back to a placeholder slot at /images/projects/<slug>.jpg */
+export const projectImage = (slug: string): ProjectImage =>
+  projectImages[slug] ?? { src: `/images/projects/${slug}.jpg`, alt: "", fit: "cover" };

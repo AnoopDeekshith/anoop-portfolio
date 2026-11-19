@@ -1,8 +1,8 @@
-import Image from "next/image";
 import { profile, focusAreas } from "@anoop/content";
 import Photo from "@/components/Photo";
+import ScrollVideoHero from "@/components/ScrollVideoHero";
 import { ButtonLink, SectionHeading, pad } from "@/components/ui";
-import { aboutPhotos, coverImage } from "@/site";
+import { aboutPhotos, heroVideo } from "@/site";
 
 export default function Home() {
   // "Anoop Deekshith" / "Ravikumar" — the surname gets its own line
@@ -12,16 +12,12 @@ export default function Home() {
   return (
     <>
       {/* ── Hero ─────────────────────────────────────────── */}
-      <section id="top" className="relative flex min-h-[100svh] items-end overflow-hidden bg-black text-white">
-        <Image
-          src={coverImage.src}
-          alt={coverImage.alt}
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-          style={{ objectPosition: coverImage.position }}
-        />
+      {/* Background is the opening of mainpagevideo.mp4, played by scrolling */}
+      <ScrollVideoHero
+        frameDir={heroVideo.frameDir}
+        frameCount={heroVideo.frameCount}
+        focusY={heroVideo.focusY}
+      >
         {/* Legibility gradients: top for the menu button, bottom for the name */}
         <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/45 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 via-45% to-transparent" />
@@ -36,7 +32,7 @@ export default function Home() {
             {profile.tagline}
           </p>
         </div>
-      </section>
+      </ScrollVideoHero>
 
       {/* ── About ────────────────────────────────────────── */}
       <section aria-labelledby="about-title" className={`${pad} grid gap-12 py-20 md:grid-cols-2 md:gap-14 md:py-24`}>

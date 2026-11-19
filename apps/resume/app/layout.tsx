@@ -39,7 +39,7 @@ export default function RootLayout({
       </head>
       <body className="flex min-h-screen flex-col bg-bg font-sans text-fg">
         <SiteHeader name={profile.name} resumePath={profile.resumePath} social={<SocialLinks />} />
-        <main className="flex-1">{children}</main>
+        <main className="relative isolate flex-1">{children}</main>
         <SiteFooter />
       </body>
     </html>

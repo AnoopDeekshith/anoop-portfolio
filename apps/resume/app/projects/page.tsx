@@ -69,7 +69,11 @@ export default function ProjectsPage() {
                 </p>
 
                 <div className="mt-8">
-                  <Photo src={projectImage(p.slug)} alt={p.title} aspect="16 / 9" sizes="(min-width: 768px) 48rem, 100vw" />
+                  <Photo
+                    {...projectImage(p.slug)}
+                    aspect="16 / 9"
+                    sizes="(min-width: 768px) 48rem, 100vw"
+                  />
                 </div>
 
                 <p className="mt-8 text-[1.0625rem] leading-[1.75] text-muted">{p.summary}</p>
