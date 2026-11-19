@@ -11,7 +11,10 @@ export interface Profile {
   headline: string;
   /** Focus areas, e.g. ["RTL Design", "Physical Design"] */
   roles: string[];
+  /** Short form, e.g. "San Jose, CA" */
   location: string;
+  /** Long form shown in the home hero, e.g. "San Jose, California" */
+  locationLong: string;
   /** e.g. "Open to relocation" */
   availability?: string;
   email: string;

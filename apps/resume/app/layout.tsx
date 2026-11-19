@@ -4,7 +4,7 @@ import { profile } from "@anoop/content";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import SocialLinks from "@/components/SocialLinks";
-import { themeInitScript } from "@/lib/theme";
+import { revealInitScript, themeInitScript } from "@/lib/theme";
 import { coverImage } from "@/site";
 import "./globals.css";
 
@@ -35,7 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={grotesk.variable} suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript + revealInitScript }} />
       </head>
       <body className="flex min-h-screen flex-col bg-bg font-sans text-fg">
         <SiteHeader name={profile.name} resumePath={profile.resumePath} social={<SocialLinks />} />

@@ -1,23 +1,10 @@
 @import "tailwindcss";
 
 /*
- * Theme tokens. Light by default; dark only when the visitor picks it with
- * the header switch (data-theme="dark" on <html>, remembered in localStorage).
+ * Theme tokens. Dark by default; light when the visitor picks it with the
+ * header switch (data-theme="light" on <html>, remembered in localStorage).
  */
 :root {
-  color-scheme: light;
-  --bg: #ffffff;
-  --fg: #0b0c0e;
-  --muted: #3d424a;
-  --faint: #6b717b;
-  --rule: #e4e4e1;
-  --placeholder: #f3f3f1;
-  --accent: #b5651d; /* copper */
-  --danger: #b42318;
-  --glow-strength: 0.42; /* ambient glow under cover images */
-}
-
-:root[data-theme="dark"] {
   color-scheme: dark;
   --bg: #0d0f12;
   --fg: #eceef1;
@@ -25,9 +12,22 @@
   --faint: #8b919c;
   --rule: #272b32;
   --placeholder: #161a1f;
-  --accent: #e3944d;
+  --accent: #e3944d; /* copper */
   --danger: #f97066;
-  --glow-strength: 0.6;
+  --glow-strength: 0.6; /* ambient glow under cover images */
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #ffffff;
+  --fg: #0b0c0e;
+  --muted: #3d424a;
+  --faint: #6b717b;
+  --rule: #e4e4e1;
+  --placeholder: #f3f3f1;
+  --accent: #b5651d;
+  --danger: #b42318;
+  --glow-strength: 0.42;
 }
 
 @theme inline {
@@ -52,15 +52,106 @@ html {
   text-rendering: optimizeLegibility;
 }
 
-/* Theme switch icon: moon in light mode, sun in dark mode */
-.icon-when-dark {
+/* Theme switch icon: sun in dark mode (the default), moon in light mode */
+.icon-when-light {
   display: none;
 }
-:root[data-theme="dark"] .icon-when-dark {
+:root[data-theme="light"] .icon-when-light {
   display: block;
 }
-:root[data-theme="dark"] .icon-when-light {
+:root[data-theme="light"] .icon-when-dark {
   display: none;
+}
+
+/* Soft entrance animations.
+ * .page-enter — whole page fades in on load and on every navigation (app/template.tsx)
+ * .rise-in    — headline words/lines drift up out of a light blur; stagger with --d */
+@keyframes page-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.35em);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+.page-enter {
+  animation: page-enter 0.5s ease-out both;
+}
+
+/* Scroll reveal (components/RevealScope.tsx): text blocks fade in word by word
+ * out of a light blur while the block drifts up; images/buttons fade + rise. */
+@keyframes rv-word {
+  from {
+    opacity: 0;
+    filter: blur(5px);
+  }
+  to {
+    opacity: 1;
+    filter: none;
+  }
+}
+@keyframes rv-rise {
+  from {
+    transform: translateY(8px);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes rv-fade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+.rv-word {
+  animation: rv-word 0.65s ease-out both;
+  animation-delay: var(--wd, 0ms);
+}
+.rv-rise {
+  animation: rv-rise 0.8s cubic-bezier(0.2, 0.65, 0.3, 1) both;
+  animation-delay: var(--bd, 0ms);
+}
+.rv-fade {
+  animation: rv-fade 0.8s cubic-bezier(0.2, 0.65, 0.3, 1) both;
+  animation-delay: var(--bd, 0ms);
+}
+
+/* Hide reveal targets from first paint until their turn (selector list matches
+ * TARGETS/EXCLUDE in RevealScope.tsx). html.js-reveal is set by the <head>
+ * script; .reveal-fallback shows everything if scripts never run. */
+@media (prefers-reduced-motion: no-preference) {
+  html.js-reveal:not(.reveal-fallback)
+    [data-reveal-scope]
+    :is(h1, h2, h3, h4, p, li, dt, dd, figcaption, figure, blockquote, [data-reveal]):not([data-revealed]):not(
+      #top *,
+      form *,
+      [data-no-reveal] *
+    ) {
+    opacity: 0;
+  }
+}
+.rise-in {
+  animation: rise-in 0.9s cubic-bezier(0.2, 0.65, 0.3, 1) both;
+  animation-delay: var(--d, 0ms);
 }
 
 section[id] {
@@ -82,6 +173,10 @@ section[id] {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  .page-enter,
+  .rise-in {
+    animation: none;
   }
 }
 

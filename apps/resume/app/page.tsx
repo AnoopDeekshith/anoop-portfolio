@@ -1,6 +1,7 @@
 import { profile, focusAreas } from "@anoop/content";
 import Photo from "@/components/Photo";
 import ScrollVideoHero from "@/components/ScrollVideoHero";
+import FadeWords from "@/components/FadeWords";
 import { ButtonLink, SectionHeading, pad } from "@/components/ui";
 import { aboutPhotos, heroVideo } from "@/site";
 
@@ -24,12 +25,25 @@ export default function Home() {
 
         <div className={`${pad} relative w-full pb-14 sm:pb-20`}>
           <h1 className="font-display text-[clamp(3rem,9vw,6.25rem)] font-bold leading-[0.95] tracking-[-0.03em]">
-            {nameLines[0]}
+            <FadeWords text={nameLines[0] ?? ""} delay={150} step={110} />
             <br />
-            {nameLines[1]}
+            <FadeWords text={nameLines[1] ?? ""} delay={150 + 2 * 110} step={110} />
           </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/90 sm:text-xl">
+          <p
+            className="rise-in mt-6 max-w-xl text-lg leading-relaxed text-white/90 sm:text-xl"
+            style={{ "--d": "700ms" } as React.CSSProperties}
+          >
             {profile.tagline}
+          </p>
+          <p
+            className="rise-in mt-4 flex items-center gap-2 text-sm font-medium tracking-wide text-white/70 sm:text-base"
+            style={{ "--d": "900ms" } as React.CSSProperties}
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M12 21s-7-6.1-7-11.5a7 7 0 0 1 14 0C19 14.9 12 21 12 21z" />
+              <circle cx="12" cy="9.5" r="2.5" />
+            </svg>
+            {profile.locationLong}
           </p>
         </div>
       </ScrollVideoHero>

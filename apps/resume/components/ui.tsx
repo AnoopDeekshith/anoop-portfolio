@@ -16,13 +16,13 @@ export function ButtonLink({
 }) {
   if (external) {
     return (
-      <a href={href} target="_blank" rel="noopener noreferrer" className={outline}>
+      <a href={href} target="_blank" rel="noopener noreferrer" className={outline} data-reveal="">
         {children}
       </a>
     );
   }
   return (
-    <Link href={href} className={outline}>
+    <Link href={href} className={outline} data-reveal="">
       {children}
     </Link>
   );

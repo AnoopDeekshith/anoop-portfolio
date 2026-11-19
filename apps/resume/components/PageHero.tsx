@@ -2,6 +2,7 @@ import Image from "next/image";
 import { publicFileExists } from "@/lib/public-file";
 import { coverImage } from "@/site";
 import AmbientGlow from "@/components/AmbientGlow";
+import FadeWords from "@/components/FadeWords";
 
 /**
  * Image banner with the page title bottom-left. Uses `image` if that file
@@ -40,9 +41,16 @@ export default function PageHero({
 
       <div className="relative mx-auto w-full max-w-6xl px-5 pb-12 sm:px-8 sm:pb-16">
         {kicker ? (
-          <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-white/75">{kicker}</p>
+          <p
+            className="rise-in mb-3 text-xs font-bold uppercase tracking-[0.16em] text-white/75"
+            style={{ "--d": "100ms" } as React.CSSProperties}
+          >
+            {kicker}
+          </p>
         ) : null}
-        <h1 className="font-display text-5xl font-bold tracking-[-0.03em] sm:text-6xl">{title}</h1>
+        <h1 className="font-display text-5xl font-bold tracking-[-0.03em] sm:text-6xl">
+          <FadeWords text={title} delay={220} />
+        </h1>
       </div>
     </section>
     {/* Ambient glow: the banner's colours spread softly into the page below */}
