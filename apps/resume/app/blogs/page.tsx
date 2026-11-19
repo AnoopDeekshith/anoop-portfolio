@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { publishedArticles } from "@anoop/content";
+import { profile, publishedArticles } from "@anoop/content";
+import { MediumIcon } from "@/components/Icons";
 
 export const metadata: Metadata = { title: "Blogs" };
 
@@ -8,6 +9,20 @@ export const metadata: Metadata = { title: "Blogs" };
  * Until there are any, shows a "yet to be updated" note.
  */
 export default function BlogsPage() {
+  const medium = profile.links.find((l) => l.label === "Medium");
+  const followButton = medium ? (
+    <a
+      href={medium.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      data-reveal=""
+      className="inline-flex items-center gap-2.5 border border-fg px-5 py-3 text-sm font-medium transition-colors hover:bg-fg hover:text-bg"
+    >
+      <MediumIcon size={16} />
+      Follow on Medium
+    </a>
+  ) : null;
+
   return (
     <div className="mx-auto max-w-3xl px-5 pb-24 pt-32 sm:px-8">
       <h1 className="font-display text-4xl font-bold tracking-tight sm:text-5xl">Blogs</h1>
@@ -18,9 +33,10 @@ export default function BlogsPage() {
             Yet to be updated
           </span>
           <p className="mx-auto mt-4 max-w-md leading-relaxed text-muted">
-            I&apos;ll be adding write-ups on RTL design, FPGAs, and AI hardware here gradually.
-            Check back soon.
+            I&apos;ll be publishing write-ups on RTL design, FPGAs, and AI hardware on Medium
+            {medium?.display ? ` at ${medium.display}` : ""} — they&apos;ll show up here as they go live.
           </p>
+          <div className="mt-8 flex justify-center">{followButton}</div>
         </div>
       ) : (
         <ul className="mt-12 divide-y divide-rule border-y border-rule">
@@ -44,6 +60,8 @@ export default function BlogsPage() {
           ))}
         </ul>
       )}
+
+      {publishedArticles.length > 0 && followButton ? <div className="mt-10">{followButton}</div> : null}
     </div>
   );
 }
