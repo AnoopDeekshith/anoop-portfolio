@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# anoop-sites
 
-## Getting Started
+Monorepo (npm workspaces) for my personal sites.
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+apps/
+  portfolio/   The interactive chip-design portfolio (Next.js 16, GSAP, framer-motion)
+  resume/      Simple, recruiter-friendly site for job applications (Next.js 16, server-only)
+packages/
+  content/     @anoop/content: profile, experience, projects, skills, education, writing
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Getting started
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install            # once, from the repo root
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+npm run dev            # resume site      → http://localhost:3001
+npm run dev:portfolio  # portfolio site   → http://localhost:3000
 
-## Learn More
+npm run build          # build every app
+npm run typecheck      # typecheck every workspace
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Editing content
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Edit the files in `packages/content/src/`. The resume site reads all of its text
+from there, so updating a bullet or adding a project is a one-file change.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `profile.ts`: name, headline, summary, links
+- `experience.ts`: jobs and education
+- `projects.ts`: projects (`featured: false` hides one from the resume site)
+- `skills.ts`: skill groups
+- `writing.ts`: articles (only `published: true` ones are shown)
 
-## Deploy on Vercel
+### Resume site pages and images
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Pages: `/` (home), `/experience`, `/projects`, `/resume`, `/contact`.
+Nav, image paths and captions are configured in `apps/resume/site.ts`.
+Drop images into `apps/resume/public/` — any missing image shows a placeholder
+with the path it expects:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `images/cover.png`: home hero (also the fallback banner for inner pages)
+- `images/about-1.jpg`, `images/about-2.jpg`: photos beside the home intro
+- `images/pages/experience.jpg`, `images/pages/projects.jpg`: page banners
+- `images/projects/<slug>.jpg`: one per project (slugs are in `projects.ts`)
+
+The contact form emails you via Resend when `RESEND_API_KEY` is set; without
+it, the form opens a prefilled email draft instead.
+
+The portfolio app still has its content inline in its components; it can be
+migrated to `@anoop/content` incrementally.
+
+The resume PDF is served from each app's `public/resume.pdf`; update both copies
+when it changes.
+
+## Adding another app
+
+1. Create `apps/<name>/` with its own `package.json` (name it `@anoop/<name>`).
+2. Add `"@anoop/content": "*"` to its dependencies and
+   `transpilePackages: ["@anoop/content"]` to its `next.config.ts`.
+3. Run `npm install` from the root.
+
+## Deploying (Vercel)
+
+Each app is its own Vercel project pointed at this repo, with **Root Directory**
+set to `apps/portfolio` or `apps/resume`. Vercel detects npm workspaces and
+installs from the root automatically.

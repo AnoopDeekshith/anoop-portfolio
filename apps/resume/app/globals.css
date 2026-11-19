@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+/*
+ * Theme tokens. Light by default; dark only when the visitor picks it with
+ * the header switch (data-theme="dark" on <html>, remembered in localStorage).
+ */
+:root {
+  color-scheme: light;
+  --bg: #ffffff;
+  --fg: #0b0c0e;
+  --muted: #3d424a;
+  --faint: #6b717b;
+  --rule: #e4e4e1;
+  --placeholder: #f3f3f1;
+  --accent: #b5651d; /* copper */
+  --danger: #b42318;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0d0f12;
+  --fg: #eceef1;
+  --muted: #b4b9c2;
+  --faint: #8b919c;
+  --rule: #272b32;
+  --placeholder: #161a1f;
+  --accent: #e3944d;
+  --danger: #f97066;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-rule: var(--rule);
+  --color-placeholder: var(--placeholder);
+  --color-accent: var(--accent);
+  --color-danger: var(--danger);
+  --font-sans: var(--font-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-grotesk), ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  background: var(--bg);
+  color: var(--fg);
+  transition: background-color 0.2s ease, color 0.2s ease;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Theme switch icon: moon in light mode, sun in dark mode */
+.icon-when-dark {
+  display: none;
+}
+:root[data-theme="dark"] .icon-when-dark {
+  display: block;
+}
+:root[data-theme="dark"] .icon-when-light {
+  display: none;
+}
+
+section[id] {
+  scroll-margin-top: 4rem;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+.placeholder-stripes {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent 0 10px,
+    color-mix(in srgb, var(--rule) 70%, transparent) 10px 11px
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
